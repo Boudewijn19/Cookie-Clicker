@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Clicker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+    <!-- Header boven: Settings / Stats -->
+    <header>
+        <button id="settingsBtn">Settings</button>
+        <button id="statsBtn">Stats</button>
+        <button id="trophiesBtn">Trophies</button>
+        <button id="infoBtn">Info</button>
+    </header>
+
+    <!-- Links: Cookie -->
+    <aside class="cookie-section">
+        <h2>Cookies: <span id="score">0</span></h2>
+        <p>Per seconde: <span id="cps">0</span></p>
+        <img id="cookie" src="Images/finger-food-game-peanut-butter-cookie-recipe-cookies-and-crackers-removebg-preview.png" alt="cookie">
+    </aside>
+
+    <!-- Midden: Upgrades -->
+    <main class="upgrades-section">
+        <h2>Upgrades</h2>
+        <div class="upgrades-grid">
+            <button id="buyCursor">Koop Cursor (+1 cps) - 10 cookies</button>
+            <button id="buyMultiplier">Koop Multiplier (x2 per klik) - 50 cookies</button>
+            <button id="superKlick">Super Click (10x per klik) - 20 cookies</button>
+            <button id="goldenKlick">Golden Click - 30 cookies</button>
+        </div>
+
+        <h2>Buildings</h2>
+        <div class="buildings-grid">
+            <button id="buyGrandma">Koop Grandma 👵 (+5 cps) - 100 cookies</button>
+            <button id="buyFarm">Koop Farm 🌾 (+20 cps) - 500 cookies</button>
+            <button id="buyFactory">Koop Factory 🏭 (+100 cps) - 3000 cookies</button>
+            <button id="buyMine">Koop Mine ⛏️ (+500 cps) - 10000 cookies</button>
+            <button id="buyBank">Koop Bank 🏦 (+2000 cps) - 50000 cookies</button>
+            <button id="buyTemple">Koop Temple 🛕 (+10000 cps) - 200000 cookies</button>
+            <button id="buyWizardTower">Koop Wizard Tower 🧙 (+50000 cps) - 1000000 cookies</button>
+        </div>
+    </main>
+
+    <!-- Rechts: Shop -->
+    <aside class="shop">
+        <h2>Winkel</h2>
+        <div class="shop-items">
+            <button id="buyCursorShop">Cursor - 10 cookies</button>
+            <button id="buyMultiplierShop">Multiplier - 50 cookies</button>
+            <button id="superKlickShop">Super Click - 20 cookies</button>
+            <button id="goldenKlickShop">Golden Click - 30 cookies</button>
+            <button id="buyGrandmaShop">Grandma 👵 - 100 cookies</button>
+            <button id="buyFarmShop">Farm 🌾 - 500 cookies</button>
+            <button id="buyFactoryShop">Factory 🏭 - 3000 cookies</button>
+            <button id="buyMineShop">Mine ⛏️ - 10000 cookies</button>
+            <button id="buyBankShop">Bank 🏦 - 50000 cookies</button>
+            <button id="buyTempleShop">Temple 🛕 - 200000 cookies</button>
+            <button id="buyWizardTowerShop">Wizard Tower 🧙 - 1000000 cookies</button>
+        </div>
+    </aside>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
+<script src="script.js"></script>
+</body>
+</html>
+<script>
+
+    let name = "Fikkie";
+    let color = "bruin";
+    let age = 3;
+class dog {
+    name;
+    color;
+    age;
+    owner;
+    printname() {
+        console.log("my name is" + this.name);
+    }
+    ageup(){
+    this.age =  this.age + 1;
+        }
+    colordye(){
+    this.color = "pink";
+        }
+    ownerchange(){
+    this.newowner = "soofie";
+    }
+}
+let dog1 = new dog();
+dog1.name = "Rex";
+dog1.color = "bruin";
+dog1.age = 5;
+dog1.owner = "Henk";
+dog1 .printname();
+dog1 .ageup();
+
+let dog2 = new dog();
+dog2.name = "Fikkie";
+dog2.color = "zwart";
+dog2.age = 3;
+dog2.owner = "Piet";
+dog2 .printname();
+dog2 .colordye()
+
+let dog3 = new dog();
+dog3.name = "spot"
+dog3.color = "wit";
+dog3.age = 2;
+dog3.owner = "Klaas";
+dog3 .printname();
+dog3 .newowner();
+
+
+
+    class Book{
+        author;
+        name;
+        year;
+
+        printbook(){
+            console.log("The book" + this.name + "is written by" + this.author + "in the year" + this.year);
+        }
+    }
+let book1 = new Book();
+    authur = "J.R.R. Tolkien";
+    name = "The Lord of the Rings";
+    year = 1968;
+    book1.printbook()
+
+    let book2 = new Book();
+    authur = "Noam Chomsky";
+    name = "Manufacturing Consent";
+    year = 1988;
+    book2.printbook();
+
+class Student{
+    constructor(name, age, grade) {
+        this.name = name;
+        this.age = age;
+        this.grade = grade;
+}
+
+    showInfo() {
+        console.log(this.name + " is in grade " + this.grade);
+    }
+}
+
+    let student1 = new Student("Alice", 16, "B");
+    let student2 = new Student("Bob", 17, "A");
+
+    student1.showInfo();
+    student2.showInfo();
+
+
+    class Dog {
+        constructor(name, color) {
+            this.name = name;
+            this.color = color;
+        }
+
+        getInfo() {
+            return this.name + " is " + this.color;
+        }
+    }
+
+    let dog1 = new Dog("Spike", "brown");
+    let dog2 = new Dog("Pluto", "yellow");
+
+    document.write("Dog 1:<br>");
+    document.write(dog1.name + "<br>");
+    document.write(dog1.color + "<br><br>");
+
+    document.write("Dog 2:<br>");
+    document.write(dog2.getInfo());
+
+        class Car{
+        constructor(brand, color, tankContent) {
+            this.brand = brand;
+            this.color = color;
+            this.tankContent = tankContent;
+        }
+    }
+
+    let car1 = new Car("BMW", "black", 20);
+
+    document.write("<br>Car 1:<br>");
+    document.write(car1.brand + "<br>");
+    document.write(car1.color + "<br>");
+    document.write(car1.tankContent + " liters<br>");
+
+    car1.tankContent = 100;
+
+    document.write("<br>Car 1:<br>");
+    document.write(car1.brand + "<br>");
+    document.write(car1.color + "<br>");
+    document.write(car1.tankContent + " liters<br>");
+
+</script>
+
+<script src="script.js"></script>

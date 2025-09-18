@@ -1,0 +1,194 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f8e6d3;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+        "header header header"
+        "cookie upgrades shop";
+    height: 100vh;
+    gap: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+header {
+    grid-area: header;
+    text-align: center;
+    padding: 15px;
+    background: #deb887;
+    border-bottom: 2px solid #c97b5c;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+header button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    background: #c97b5c;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+    font-weight: bold;
+}
+
+header button:hover {
+    background: #a85f43;
+    transform: translateY(-2px);
+}
+
+/* Links: Cookie */
+.cookie-section {
+    grid-area: cookie;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff3e0;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cookie-section h2 {
+    font-size: 24px;
+    color: #8B4513;
+    margin-bottom: 5px;
+}
+
+.cookie-section p {
+    font-size: 16px;
+    color: #A0522D;
+    margin-bottom: 20px;
+}
+
+#cookie {
+    width: 300px;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+
+#cookie:active {
+    transform: scale(0.9);
+}
+
+/* Midden: Upgrades */
+.upgrades-section {
+    grid-area: upgrades;
+    padding: 20px;
+    background-color: #fff3e0;
+    border-radius: 10px;
+    overflow-y: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.upgrades-section h2 {
+    color: #8B4513;
+    border-bottom: 2px solid #c97b5c;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+.upgrades-grid, .buildings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.upgrades-grid button, .buildings-grid button {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #c97b5c;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 14px;
+    text-align: left;
+}
+
+.upgrades-grid button:hover, .buildings-grid button:hover {
+    background: #a85f43;
+    transform: translateY(-2px);
+}
+
+/* Rechts: Shop */
+.shop {
+    grid-area: shop;
+    padding: 20px;
+    background-color: #fff3e0;
+    border-radius: 10px;
+    overflow-y: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.shop h2 {
+    color: #8B4513;
+    border-bottom: 2px solid #c97b5c;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+.shop-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.shop-items button {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #c97b5c;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+    font-size: 14px;
+    text-align: left;
+}
+
+.shop-items button:hover {
+    background: #a85f43;
+    transform: translateY(-2px);
+}
+
+/* Responsive design voor kleinere schermen */
+@media (max-width: 1200px) {
+    .container {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas:
+            "header header"
+            "cookie upgrades"
+            "shop shop";
+    }
+
+    .shop {
+        height: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "header"
+            "cookie"
+            "upgrades"
+            "shop";
+    }
+
+    #cookie {
+        width: 200px;
+    }
+}
