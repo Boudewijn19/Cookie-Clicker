@@ -58,6 +58,8 @@ header button:hover {
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
 }
 
 .cookie-section h2 {
@@ -76,10 +78,65 @@ header button:hover {
     width: 300px;
     cursor: pointer;
     transition: transform 0.1s;
+    z-index: 10;
+    position: relative;
 }
 
 #cookie:active {
     transform: scale(0.9);
+}
+
+/* Building visuals */
+.building-visuals {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 40%;
+    pointer-events: none;
+}
+
+.building-image {
+    position: absolute;
+    bottom: 0;
+    transition: transform 0.3s ease, opacity 0.5s ease;
+    opacity: 0;
+    transform: translateY(100px);
+    max-width: 80px;
+    max-height: 80px;
+}
+
+.building-image.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.building-image.grandma {
+    left: 10%;
+}
+
+.building-image.farm {
+    left: 30%;
+}
+
+.building-image.factory {
+    left: 50%;
+}
+
+.building-image.mine {
+    left: 70%;
+}
+
+.building-image.bank {
+    left: 20%;
+}
+
+.building-image.temple {
+    left: 40%;
+}
+
+.building-image.wizard {
+    left: 60%;
 }
 
 /* Midden: Upgrades */
@@ -90,6 +147,9 @@ header button:hover {
     border-radius: 10px;
     overflow-y: auto;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .upgrades-section h2 {
@@ -103,7 +163,6 @@ header button:hover {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 10px;
-    margin-bottom: 30px;
 }
 
 .upgrades-grid button, .buildings-grid button {
@@ -121,6 +180,56 @@ header button:hover {
 .upgrades-grid button:hover, .buildings-grid button:hover {
     background: #a85f43;
     transform: translateY(-2px);
+}
+
+/* Buildings display */
+.buildings-display {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+    background: #f7d9b9;
+    padding: 15px;
+    border-radius: 8px;
+    border: 2px solid #c97b5c;
+}
+
+.building-row {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    background: #fff3e0;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    opacity: 0.5;
+    transform: scale(0.95);
+}
+
+.building-row.unlocked {
+    opacity: 1;
+    transform: scale(1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.building-icon {
+    font-size: 24px;
+    width: 40px;
+    text-align: center;
+}
+
+.building-info {
+    flex-grow: 1;
+}
+
+.building-name {
+    font-weight: bold;
+    color: #8B4513;
+}
+
+.building-count {
+    font-size: 14px;
+    color: #A0522D;
 }
 
 /* Rechts: Shop */
@@ -176,6 +285,11 @@ header button:hover {
     .shop {
         height: 300px;
     }
+
+    .building-image {
+        max-width: 60px;
+        max-height: 60px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -190,5 +304,14 @@ header button:hover {
 
     #cookie {
         width: 200px;
+    }
+
+    .upgrades-grid, .buildings-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .building-image {
+        max-width: 50px;
+        max-height: 50px;
     }
 }

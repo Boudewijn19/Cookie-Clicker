@@ -21,9 +21,12 @@
         <h2>Cookies: <span id="score">0</span></h2>
         <p>Per seconde: <span id="cps">0</span></p>
         <img id="cookie" src="Images/finger-food-game-peanut-butter-cookie-recipe-cookies-and-crackers-removebg-preview.png" alt="cookie">
+
+        <!-- Building visuals container -->
+        <div class="building-visuals" id="buildingVisuals"></div>
     </aside>
 
-    <!-- Midden: Upgrades -->
+    <!-- Midden: Upgrades en Buildings -->
     <main class="upgrades-section">
         <h2>Upgrades</h2>
         <div class="upgrades-grid">
@@ -42,6 +45,59 @@
             <button id="buyBank">Koop Bank 🏦 (+2000 cps) - 50000 cookies</button>
             <button id="buyTemple">Koop Temple 🛕 (+10000 cps) - 200000 cookies</button>
             <button id="buyWizardTower">Koop Wizard Tower 🧙 (+50000 cps) - 1000000 cookies</button>
+        </div>
+
+        <!-- Visuele weergave van gekochte buildings -->
+        <div class="buildings-display">
+            <div class="building-row" id="grandma-row">
+                <div class="building-icon">👵</div>
+                <div class="building-info">
+                    <div class="building-name">Grandma</div>
+                    <div class="building-count" id="grandma-count">0</div>
+                </div>
+            </div>
+            <div class="building-row" id="farm-row">
+                <div class="building-icon">🌾</div>
+                <div class="building-info">
+                    <div class="building-name">Farm</div>
+                    <div class="building-count" id="farm-count">0</div>
+                </div>
+            </div>
+            <div class="building-row" id="factory-row">
+                <div class="building-icon">🏭</div>
+                <div class="building-info">
+                    <div class="building-name">Factory</div>
+                    <div class="building-count" id="factory-count">0</div>
+                </div>
+            </div>
+            <div class="building-row" id="mine-row">
+                <div class="building-icon">⛏️</div>
+                <div class="building-info">
+                    <div class="building-name">Mine</div>
+                    <div class="building-count" id="mine-count">0</div>
+                </div>
+            </div>
+            <div class="building-row" id="bank-row">
+                <div class="building-icon">🏦</div>
+                <div class="building-info">
+                    <div class="building-name">Bank</div>
+                    <div class="building-count" id="bank-count">0</div>
+                </div>
+            </div>
+            <div class="building-row" id="temple-row">
+                <div class="building-icon">🛕</div>
+                <div class="building-info">
+                    <div class="building-name">Temple</div>
+                    <div class="building-count" id="temple-count">0</div>
+                </div>
+            </div>
+            <div class="building-row" id="wizard-row">
+                <div class="building-icon">🧙</div>
+                <div class="building-info">
+                    <div class="building-name">Wizard Tower</div>
+                    <div class="building-count" id="wizard-count">0</div>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -63,10 +119,6 @@
         </div>
     </aside>
 </div>
-
-<script src="script.js"></script>
-</body>
-</html>
 
 <script src="script.js"></script>
 </body>
