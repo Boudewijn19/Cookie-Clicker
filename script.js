@@ -331,10 +331,53 @@ class Game {
             this.showBuildingVisual("temple", this.templeUpgrade.amount);
         }
         if (this.wizardTowerUpgrade.amount > 0) {
-            this.showBuildingVisual("wizard", this.wizardTowerUpgrade.amount);
+            this.showBuildingVisual("wizard tower", this.wizardTowerUpgrade.amount);
         }
     }
 }
 
 // === Start spel ===
 const game = new Game();
+
+// === Settings ===
+const settingsBtn = document.getElementById("settingsBtn");
+const settingsPanel = document.getElementById("openSettings");
+const closeBtn = document.getElementById("closeSettings");
+const darkMode = document.getElementById("darkMode");
+const resetBtn = document.getElementById("resetGame");
+
+// === Settings ===
+const Settings = {
+    panel: document.getElementById("settings-panel"),
+    openBtn: document.getElementById("settingsBtn"),
+    closeBtn: document.getElementById("close-settings"),
+    darkMode: document.getElementById("dark-mode"),
+    resetBtn: document.getElementById("reset-game"),
+
+    init: function() {
+        // Open / close panel
+        this.openBtn.addEventListener("click", () => this.panel.style.display = "block");
+        this.closeBtn.addEventListener("click", () => this.panel.style.display = "none");
+
+        // Sluit bij klikken buiten panel
+        window.addEventListener("click", (e) => {
+            if (e.target === this.panel) this.panel.style.display = "none";
+        });
+
+        // Dark mode toggle
+        this.darkMode.addEventListener("change", () => {
+            document.body.classList.toggle("dark-mode");
+        });
+
+        // Reset game
+        this.resetBtn.addEventListener("click", () => {
+            if (confirm("Weet je zeker dat je het spel wilt resetten?")) {
+                location.reload();
+            }
+        });
+    }
+};
+
+// Start settings functionaliteit
+Settings.init();
+

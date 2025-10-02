@@ -315,3 +315,38 @@ header button:hover {
         max-height: 50px;
     }
 }
+
+/* Settings overlay */
+.settings {
+    display: none; /* verborgen tot je opent */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+}
+
+/* Settings content box */
+.settings-content {
+    background-color: #fff;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 300px;
+    text-align: center;
+}
+
+/* Dark mode */
+body.dark-mode {
+    background-color: #222;
+    color: #fff;
+}
+
+body.dark-mode .settings-content {
+    background-color: #333;
+    color: #fff;
+}
+
