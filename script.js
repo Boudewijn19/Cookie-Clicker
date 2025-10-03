@@ -37,11 +37,11 @@ class Upgrade {
                 game.activateGoldenKlick();
             }
 
-            // Verhoog prijs na aankoop
+            // Price increases after purchase
             this.price = Math.floor(this.price * 1.5);
             game.updateUI();
 
-            // Toon building visual
+            // Shows building visual
             if (this.effectType === "cps" && this.name !== "Cursor") {
                 game.showBuildingVisual(this.name.toLowerCase(), this.amount);
             }
@@ -73,19 +73,19 @@ class Game {
         this.cookiesPerClick = 1;
         this.cps = 0; // Cookies per Second
 
-        // DOM elementen
+        // DOM elements
         this.scoreDisplay = document.getElementById("score");
         this.cpsDisplay = document.getElementById("cps");
         this.cookie = document.getElementById("cookie");
         this.buildingVisuals = document.getElementById("buildingVisuals");
 
-        // Upgrade knoppen
+        // Upgrade buttons
         this.buyCursor = document.getElementById("buyCursor");
         this.buyMultiplier = document.getElementById("buyMultiplier");
         this.superKlickBtn = document.getElementById("superKlick");
         this.goldenKlickBtn = document.getElementById("goldenKlick");
 
-        // Building knoppen
+        // Building buttons
         this.buyGrandma = document.getElementById("buyGrandma");
         this.buyFarm = document.getElementById("buyFarm");
         this.buyFactory = document.getElementById("buyFactory");
@@ -94,7 +94,7 @@ class Game {
         this.buyTemple = document.getElementById("buyTemple");
         this.buyWizardTower = document.getElementById("buyWizardTower");
 
-        // Shop knoppen
+        // Shop buttons
         this.buyCursorShop = document.getElementById("buyCursorShop");
         this.buyMultiplierShop = document.getElementById("buyMultiplierShop");
         this.superKlickShop = document.getElementById("superKlickShop");
@@ -161,7 +161,7 @@ class Game {
         this.buyTemple.addEventListener("click", () => this.templeUpgrade.buy(this));
         this.buyWizardTower.addEventListener("click", () => this.wizardTowerUpgrade.buy(this));
 
-        // Shop event listeners (dupliceren de functionaliteit van de andere knoppen)
+        // Shop event listeners 
         this.buyCursorShop.addEventListener("click", () => this.cursorUpgrade.buy(this));
         this.buyMultiplierShop.addEventListener("click", () => this.multiplierUpgrade.buy(this));
         this.superKlickShop.addEventListener("click", () => this.superKlickUpgrade.buy(this));
@@ -174,7 +174,7 @@ class Game {
         this.buyTempleShop.addEventListener("click", () => this.templeUpgrade.buy(this));
         this.buyWizardTowerShop.addEventListener("click", () => this.wizardTowerUpgrade.buy(this));
 
-        // Interval voor auto-click
+        // Interval for auto-click
         setInterval(() => {
             this.cookies += this.cps;
             this.updateUI();
@@ -187,7 +187,7 @@ class Game {
         this.clickCounter++;
         let addedCookies = this.cookiesPerClick;
 
-        // Golden Click: elke 50e klik geeft bonus
+        // Golden Click: every 50 clicks, it gives a bonus
         if (this.goldenActive && this.clickCounter % 50 === 0) {
             addedCookies += 500;
         }
@@ -196,17 +196,17 @@ class Game {
         this.updateUI();
     }
 
-    // Super Click: tijdelijke 10x per klik
+    // Super Click: temporary 10x per click
     activateSuperKlick(multiplier) {
         this.cookiesPerClick *= multiplier;
         this.updateUI();
         setTimeout(() => {
             this.cookiesPerClick /= multiplier;
             this.updateUI();
-        }, 10000); // 10 seconden
+        }, 10000); // 10 seconds
     }
 
-    // Golden Click: bonus elke 50e klik, 1 minuut actief
+    // Golden Click: bonus every 50 clicks, 1 minute active
     activateGoldenKlick() {
         this.goldenActive = true;
         this.updateUI();
@@ -216,28 +216,28 @@ class Game {
         }, 60000); // 1 minuut
     }
 
-    // Toon building visual
+    // Show building visual
     showBuildingVisual(buildingType, amount) {
-        // Verwijder bestaande building van dit type
+        // Remove existing building of this type
         const existingBuilding = document.querySelector(`.building-image.${buildingType}`);
         if (existingBuilding) {
             existingBuilding.remove();
         }
 
-        // Maak nieuwe building visual
+        // Create new building visual
         const buildingImg = document.createElement('div');
         buildingImg.className = `building-image ${buildingType}`;
 
-        // Gebruik emoji als afbeelding
+        // Use emoji as image
         buildingImg.innerHTML = this.getBuildingEmoji(buildingType);
         buildingImg.style.fontSize = '40px';
 
-        // Positionering op basis van building type
+        // Positioning based on building type
         buildingImg.style.bottom = `${Math.min(amount * 5, 100)}px`;
 
         this.buildingVisuals.appendChild(buildingImg);
 
-        // Animeer het verschijnen
+        // Animate the appearance
         setTimeout(() => {
             buildingImg.classList.add('show');
         }, 10);
@@ -274,13 +274,13 @@ class Game {
         this.scoreDisplay.textContent = Math.floor(this.cookies);
         this.cpsDisplay.textContent = this.cps;
 
-        // Upgrade knoppen bijwerken
+        // Upgrade buttons update
         this.buyCursor.textContent = `Koop Cursor (+1 cps) - ${this.cursorUpgrade.price} cookies`;
         this.buyMultiplier.textContent = `Koop Multiplier (x2 per klik) - ${this.multiplierUpgrade.price} cookies`;
         this.superKlickBtn.textContent = `Super Click (10x per klik) - ${this.superKlickUpgrade.price} cookies`;
         this.goldenKlickBtn.textContent = `Golden Click - ${this.goldenKlickUpgrade.price} cookies`;
 
-        // Building knoppen bijwerken
+        // Building buttons update
         this.buyGrandma.textContent = `Koop Grandma 👵 (+5 cps) - ${this.grandmaUpgrade.price} cookies`;
         this.buyFarm.textContent = `Koop Farm 🌾 (+20 cps) - ${this.farmUpgrade.price} cookies`;
         this.buyFactory.textContent = `Koop Factory 🏭 (+100 cps) - ${this.factoryUpgrade.price} cookies`;
@@ -289,7 +289,7 @@ class Game {
         this.buyTemple.textContent = `Koop Temple 🛕 (+10000 cps) - ${this.templeUpgrade.price} cookies`;
         this.buyWizardTower.textContent = `Koop Wizard Tower 🧙 (+50000 cps) - ${this.wizardTowerUpgrade.price} cookies`;
 
-        // Shop knoppen bijwerken
+        // Shop buttons update
         this.buyCursorShop.textContent = `Cursor - ${this.cursorUpgrade.price} cookies`;
         this.buyMultiplierShop.textContent = `Multiplier - ${this.multiplierUpgrade.price} cookies`;
         this.superKlickShop.textContent = `Super Click - ${this.superKlickUpgrade.price} cookies`;
@@ -302,7 +302,7 @@ class Game {
         this.buyTempleShop.textContent = `Temple 🛕 - ${this.templeUpgrade.price} cookies`;
         this.buyWizardTowerShop.textContent = `Wizard Tower 🧙 - ${this.wizardTowerUpgrade.price} cookies`;
 
-        // Building displays bijwerken
+        // Building displays update
         this.updateBuildingDisplay("grandma", this.grandmaUpgrade.amount);
         this.updateBuildingDisplay("farm", this.farmUpgrade.amount);
         this.updateBuildingDisplay("factory", this.factoryUpgrade.amount);
