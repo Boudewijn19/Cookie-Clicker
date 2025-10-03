@@ -336,15 +336,8 @@ class Game {
     }
 }
 
-// === Start spel ===
+// === Start game ===
 const game = new Game();
-
-// === Settings ===
-const settingsBtn = document.getElementById("settingsBtn");
-const settingsPanel = document.getElementById("openSettings");
-const closeBtn = document.getElementById("closeSettings");
-const darkMode = document.getElementById("darkMode");
-const resetBtn = document.getElementById("resetGame");
 
 // === Settings ===
 const Settings = {
@@ -359,7 +352,7 @@ const Settings = {
         this.openBtn.addEventListener("click", () => this.panel.style.display = "block");
         this.closeBtn.addEventListener("click", () => this.panel.style.display = "none");
 
-        // Sluit bij klikken buiten panel
+        //Button to close the panel
         window.addEventListener("click", (e) => {
             if (e.target === this.panel) this.panel.style.display = "none";
         });
@@ -378,6 +371,5 @@ const Settings = {
     }
 };
 
-// Start settings functionaliteit
 Settings.init();
 

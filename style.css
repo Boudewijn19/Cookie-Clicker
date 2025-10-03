@@ -316,37 +316,44 @@ header button:hover {
     }
 }
 
-/* Settings overlay */
 .settings {
-    display: none; /* verborgen tot je opent */
+    display: none;
     position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
     z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0,0,0,0.5);
 }
 
-/* Settings content box */
 .settings-content {
-    background-color: #fff;
+    background: #fff;
     margin: 10% auto;
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 12px;
     width: 300px;
     text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-/* Dark mode */
+.settings-content button {
+    background: #c97b5c;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+.settings-content button:hover {
+    background: #a85f43;
+    transform: translateY(-2px);
+}
+
 body.dark-mode {
-    background-color: #222;
-    color: #fff;
+    background: #121212;
+    color: #eee;
 }
-
 body.dark-mode .settings-content {
-    background-color: #333;
-    color: #fff;
+    background: #1e1e1e;
+    color: #eee;
 }
-
