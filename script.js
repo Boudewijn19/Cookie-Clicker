@@ -183,6 +183,13 @@ class Game {
         this.updateUI();
     }
 
+    updateStats() {
+        document.getElementById("statCookies").textContent = Math.floor(this.cookies);
+        document.getElementById("statCps").textContent = this.cps;
+        document.getElementById("statCursors").textContent = this.cursorUpgrade.amount;
+        document.getElementById("statGrandmas").textContent = this.grandmaUpgrade.amount;
+    }
+
     clickCookie() {
         this.clickCounter++;
         let addedCookies = this.cookiesPerClick;
@@ -371,5 +378,31 @@ const Settings = {
     }
 };
 
-Settings.init();
+// === Stats Panel ===
+const Stats = {
+    panel: document.getElementById("statsPanel"),
+    openBtn: document.getElementById("statsBtn"),
+    closeBtn: document.getElementById("closeStats"),
 
+    init: function() {
+        // Open panel
+        this.openBtn.addEventListener("click", () => {
+            this.panel.style.display = "block";
+            game.updateStats(); // update de stats als je opent
+        });
+
+        // Close panel
+        this.closeBtn.addEventListener("click", () => this.panel.style.display = "none");
+
+        // Optional: sluiten als je buiten klikt
+        window.addEventListener("click", (e) => {
+            if (e.target === this.panel) this.panel.style.display = "none";
+        });
+    }
+};
+
+// Initialiseer Settings en Stats
+Settings.init();
+Stats.init();
+
+ 
