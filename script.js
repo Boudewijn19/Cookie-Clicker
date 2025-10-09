@@ -1,4 +1,4 @@
-// === Upgrade Class ===
+// Upgrade Class 
 class Upgrade {
     constructor(name, basePrice, effectType, effectValue, imageSrc) {
         this.name = name;
@@ -39,7 +39,7 @@ class Upgrade {
 
             // Price increases after purchase
             this.price = Math.floor(this.price * 1.5);
-            game.updateUI();
+            game.updateUI();     
 
             // Shows building visual
             if (this.effectType === "cps" && this.name !== "Cursor") {
@@ -66,7 +66,7 @@ class Upgrade {
     }
 }
 
-// === Game Class ===
+// Game Class 
 class Game {
     constructor() {
         this.cookies = 0;
@@ -183,11 +183,18 @@ class Game {
         this.updateUI();
     }
 
+    // This updates the stats 
     updateStats() {
         document.getElementById("statCookies").textContent = Math.floor(this.cookies);
         document.getElementById("statCps").textContent = this.cps;
         document.getElementById("statCursors").textContent = this.cursorUpgrade.amount;
         document.getElementById("statGrandmas").textContent = this.grandmaUpgrade.amount;
+        document.getElementById("statFarm").textContent = this.farmUpgrade.amount;
+        document.getElementById("statFactory").textContent = this.factoryUpgrade.amount;
+        document.getElementById("statMine").textContent = this.mineUpgrade.amount;
+        document.getElementById("statBank").textContent = this.bankUpgrade.amount;
+        document.getElementById("statTemple").textContent = this.templeUpgrade.amount;
+        document.getElementById("statWizard").textContent = this.wizardTowerUpgrade.amount;
     }
 
     clickCookie() {
@@ -340,13 +347,14 @@ class Game {
         if (this.wizardTowerUpgrade.amount > 0) {
             this.showBuildingVisual("wizard tower", this.wizardTowerUpgrade.amount);
         }
+        this.updateStats();
     }
 }
 
-// === Start game ===
+// Start game
 const game = new Game();
 
-// === Settings ===
+// Settings
 const Settings = {
     panel: document.getElementById("settings-panel"),
     openBtn: document.getElementById("settingsBtn"),
@@ -369,7 +377,7 @@ const Settings = {
             document.body.classList.toggle("dark-mode");
         });
 
-        // Reset game
+        // Resets game
         this.resetBtn.addEventListener("click", () => {
             if (confirm("Weet je zeker dat je het spel wilt resetten?")) {
                 location.reload();
@@ -378,30 +386,24 @@ const Settings = {
     }
 };
 
-// === Stats Panel ===
+// Stats Panel
 const Stats = {
     panel: document.getElementById("statsPanel"),
     openBtn: document.getElementById("statsBtn"),
     closeBtn: document.getElementById("closeStats"),
 
+    // Opens panel
     init: function() {
-        // Open panel
         this.openBtn.addEventListener("click", () => {
             this.panel.style.display = "block";
-            game.updateStats(); // update de stats als je opent
+            game.updateStats(); 
         });
 
-        // Close panel
+        // Closes panel
         this.closeBtn.addEventListener("click", () => this.panel.style.display = "none");
-
-        // Optional: sluiten als je buiten klikt
-        window.addEventListener("click", (e) => {
-            if (e.target === this.panel) this.panel.style.display = "none";
-        });
     }
 };
 
-// Initialiseer Settings en Stats
 Settings.init();
 Stats.init();
 
