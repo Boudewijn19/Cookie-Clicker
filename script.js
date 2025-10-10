@@ -65,13 +65,21 @@ class Upgrade {
         }
     }
 }
-
-// Game Class 
+// === Game Class ===
 class Game {
     constructor() {
         this.cookies = 0;
         this.cookiesPerClick = 1;
-        this.cps = 0; // Cookies per Second
+        this.cps = 0;
+        this.previousCookies = 0;
+
+        // Milestones system
+        this.milestones = [1000, 10000, 50000, 100000, 1000000, 10000000, 100000000, 1000000000, 10000000000, 100000000000];
+        this.reachedMilestones = new Set();
+
+        // Extra counters
+        this.clickCounter = 0;
+        this.goldenActive = false;
 
         // DOM elements
         this.scoreDisplay = document.getElementById("score");
@@ -139,10 +147,6 @@ class Game {
         this.templeUpgrade = new Upgrade("Temple", 200000, "cps", 10000);
         this.wizardTowerUpgrade = new Upgrade("Wizard Tower", 1000000, "cps", 50000);
 
-        // Golden Click status
-        this.goldenActive = false;
-        this.clickCounter = 0;
-
         // Event listeners
         this.cookie.addEventListener("click", () => this.clickCookie());
 
@@ -161,7 +165,7 @@ class Game {
         this.buyTemple.addEventListener("click", () => this.templeUpgrade.buy(this));
         this.buyWizardTower.addEventListener("click", () => this.wizardTowerUpgrade.buy(this));
 
-        // Shop event listeners 
+        // Shop event listeners
         this.buyCursorShop.addEventListener("click", () => this.cursorUpgrade.buy(this));
         this.buyMultiplierShop.addEventListener("click", () => this.multiplierUpgrade.buy(this));
         this.superKlickShop.addEventListener("click", () => this.superKlickUpgrade.buy(this));
@@ -174,7 +178,7 @@ class Game {
         this.buyTempleShop.addEventListener("click", () => this.templeUpgrade.buy(this));
         this.buyWizardTowerShop.addEventListener("click", () => this.wizardTowerUpgrade.buy(this));
 
-        // Interval for auto-click
+        // Interval voor auto-click
         setInterval(() => {
             this.cookies += this.cps;
             this.updateUI();
@@ -198,17 +202,36 @@ class Game {
     }
 
     clickCookie() {
+        this.previousCookies = this.cookies;
+
         this.clickCounter++;
         let addedCookies = this.cookiesPerClick;
 
-        // Golden Click: every 50 clicks, it gives a bonus
         if (this.goldenActive && this.clickCounter % 50 === 0) {
             addedCookies += 500;
         }
 
         this.cookies += addedCookies;
         this.updateUI();
+
+        // ✅ Milestone-checks
+        for (const milestone of this.milestones) {
+            if (
+                this.previousCookies < milestone &&
+                this.cookies >= milestone &&
+                !this.reachedMilestones.has(milestone)
+            ) {
+                this.reachedMilestones.add(milestone);
+                this.showMilestonePopup(milestone);
+            }
+        }
     }
+
+    showMilestonePopup(milestone) {
+        alert(`🎉 Gefeliciteerd! Je hebt ${milestone.toLocaleString()} cookies bereikt!`);
+    }
+
+
 
     // Super Click: temporary 10x per click
     activateSuperKlick(multiplier) {
