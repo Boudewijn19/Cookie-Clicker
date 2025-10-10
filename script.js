@@ -65,7 +65,8 @@ class Upgrade {
         }
     }
 }
-// === Game Class ===
+
+// Game Class 
 class Game {
     constructor() {
         this.cookies = 0;
