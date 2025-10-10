@@ -47,7 +47,7 @@ header button:hover {
     transform: translateY(-2px);
 }
 
-/* Links: Cookie */
+/* Left: Cookie */
 .cookie-section {
     grid-area: cookie;
     display: flex;
@@ -139,7 +139,6 @@ header button:hover {
     left: 60%;
 }
 
-/* Midden: Upgrades */
 .upgrades-section {
     grid-area: upgrades;
     padding: 20px;
@@ -182,7 +181,6 @@ header button:hover {
     transform: translateY(-2px);
 }
 
-/* Buildings display */
 .buildings-display {
     display: flex;
     flex-direction: column;
@@ -232,7 +230,6 @@ header button:hover {
     color: #A0522D;
 }
 
-/* Rechts: Shop */
 .shop {
     grid-area: shop;
     padding: 20px;
@@ -272,7 +269,6 @@ header button:hover {
     transform: translateY(-2px);
 }
 
-/* Responsive design voor kleinere schermen */
 @media (max-width: 1200px) {
     .container {
         grid-template-columns: 1fr 1fr;
