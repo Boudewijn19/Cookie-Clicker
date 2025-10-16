@@ -42,12 +42,14 @@ class Upgrade {
             game.updateUI();     
 
             // Shows building visual
-            if (this.effectType === "cps" && this.name !== "Cursor") {
+            if (this.effectType === "cps" && this.name) {
                 game.showBuildingVisual(this.name.toLowerCase(), this.amount);
             }
 
             // Update building display
-            if (this.name === "Grandma") {
+            if (this.name === "Cursor") {
+                game.updateBuildingDisplay("cursor", this.amount);
+            } else if(this.name === "Grandma") {
                 game.updateBuildingDisplay("grandma", this.amount);
             } else if (this.name === "Farm") {
                 game.updateBuildingDisplay("farm", this.amount);
@@ -283,6 +285,7 @@ class Game {
 
     getBuildingEmoji(buildingType) {
         const emojiMap = {
+            "cursor": "👆",
             "grandma": "👵",
             "farm": "🌾",
             "factory": "🏭",
@@ -428,7 +431,32 @@ const Stats = {
     }
 };
 
+// Info Panel
+const Info = {
+    panel: document.getElementById("infoPanel"),
+    openBtn: document.getElementById("infoBtn"),
+    closeBtn: document.getElementById("closeInfo"),
+
+    init: function() {
+        // Opent het Info-panel
+        this.openBtn.addEventListener("click", () => {
+            this.panel.style.display = "block";
+        });
+
+        // Sluit het Info-panel
+        this.closeBtn.addEventListener("click", () => {
+            this.panel.style.display = "none";
+        });
+
+        // Klik buiten het venster om te sluiten
+        window.addEventListener("click", (e) => {
+            if (e.target === this.panel) {
+                this.panel.style.display = "none";
+            }
+        });
+    }
+};
+
+Info.init();
 Settings.init();
 Stats.init();
-
- 

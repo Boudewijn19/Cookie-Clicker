@@ -353,3 +353,13 @@ body.dark-mode .settings-content {
     background: #1e1e1e;
     color: #eee;
 }
+
+#infoPanel p, #infoPanel ul, #infoPanel li {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+#infoPanel ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
