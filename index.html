@@ -134,11 +134,12 @@
         <button id="reset-game">Reset Game</button>
     </div>
 </div>
+
 <!-- Popup container -->
-<div id="milestonePopup" class="popup">
+<div id="Popup" class="popup">3
     <div class="popup-content">
         <span id="closePopup">&times;</span>
-        <h1 id="popupTitle">je hebt een trophy verdient!</h1>
+        <h1 id="popupTitle">You earned a trophy!</h1>
     </div>
 </div>
 
@@ -162,13 +163,13 @@
   <div id="infoPanel" class="settings">
     <div class="settings-content">
       <h2>Info</h2>
-      <p>Cookie Clicker is een game waar je cookies kunt verdienen door te klikken op een cookie, 
-        met die cookies kun je upgrades en gebouwen kopen die automatisch meer cookies voor je genereren.</p>
+      <p>Cookie Clicker is a game where you earn cookies by clicking on a cookie, 
+        with those cookies you can buy upgrades and buildings that automatically generate more cookies for you.</p>
         <h3>Upgrades</h3>
         <ul>
-            <li>Cursor: +1 cookies per klik en 1 cookie per seconde</li>
-            <li>Multiplier: +2 cookies per klik</li>
-            <li>Super Click: +10 cookies per klik</li>
+            <li>Cursor: +1 cookies per click and 1 cookie per second</li>
+            <li>Multiplier: +2 cookies per click</li>
+            <li>Super Click: +10 cookies per click</li>
             <li>Golden Click: +500 cookies per klik</li>
         </ul>
         <h3>Buildings</h3>
@@ -176,12 +177,24 @@
             <li>Grandma: +5 cookies per seconde</li>
             <li>Farm: +20 cookies per seconde</li>
             <li>Factory: +100 cookies per seconde</li>
-            <li>Mine: +500 cookies per seconde</li>
+            <li>Mine: +500 cookies per seconde</li> 
             <li>Bank: +2000 cookies per seconde</li>
             <li>Temple: +10000 cookies per seconde</li>
             <li>Wizard Tower: +50000 cookies per seconde</li>
         </ul>
       <button id="closeInfo">Close</button>
+    </div>
+  </div>
+
+  <!-- Confirm Box for Reset -->
+  <div id="confirmBox" class="settings">
+    <div class="settings-content">
+      <h2>Confirmation</h2>
+      <p>Are you sure you want to reset the game?</p>
+      <div style="display: flex; gap: 10px; justify-content: center;">
+        <button id="noBtn">Cancel</button>
+        <button id="yesBtn">Reset</button>
+      </div>
     </div>
   </div>
 

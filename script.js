@@ -406,9 +406,13 @@ const Settings = {
 
         // Resets game
         this.resetBtn.addEventListener("click", () => {
-            if (confirm("Weet je zeker dat je het spel wilt resetten?")) {
-                location.reload();
-            }
+            const confirmBox = document.getElementById("confirmBox");
+            const noBtn = document.getElementById("noBtn");
+            const yesBtn = document.getElementById("yesBtn");
+
+            confirmBox.style.display = "block";
+            noBtn.addEventListener("click", () => confirmBox.style.display = "none");
+            yesBtn.addEventListener("click", () => location.reload());
         });
     }
 };
@@ -437,18 +441,16 @@ const Info = {
     openBtn: document.getElementById("infoBtn"),
     closeBtn: document.getElementById("closeInfo"),
 
+    // Opens panel
     init: function() {
-        // Opent het Info-panel
         this.openBtn.addEventListener("click", () => {
             this.panel.style.display = "block";
         });
 
-        // Sluit het Info-panel
         this.closeBtn.addEventListener("click", () => {
             this.panel.style.display = "none";
         });
 
-        // Klik buiten het venster om te sluiten
         window.addEventListener("click", (e) => {
             if (e.target === this.panel) {
                 this.panel.style.display = "none";
