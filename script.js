@@ -75,7 +75,7 @@ class Game {
         this.previousCookies = 0;
 
         // Milestones system
-        this.milestones = [1000, 10000, 50000, 100000, 1000000, 10000000, 100000000, 1000000000, 10000000000, 100000000000];
+        this.milestones = [1,100, 1000, 10000, 50000, 100000, 1000000, 10000000, 100000000, 1000000000, 10000000000, 100000000000];
         this.reachedMilestones = new Set();
 
         // Extra counters
@@ -227,10 +227,60 @@ class Game {
             }
         }
     }
-
     showMilestonePopup(milestone) {
-        alert(`🎉 Gefeliciteerd! Je hebt ${milestone.toLocaleString()} cookies bereikt!`);
+        const existingPopup = document.getElementById("milestonePopup");
+        if (existingPopup) existingPopup.remove();
+
+        // Store milestone in LocalStorage
+        let achievedTrophies = JSON.parse(localStorage.getItem("achievedTrophies")) || [];
+        const trophyKey = `trophy-${milestone}`;
+        if (!achievedTrophies.includes(trophyKey)) {
+            achievedTrophies.push(trophyKey);
+            localStorage.setItem("achievedTrophies", JSON.stringify(achievedTrophies));
+        }
+
+        // creates popup container
+        const popup = document.createElement("div");
+        popup.id = "milestonePopup";
+        popup.style.position = "fixed";
+        popup.style.top = "20%";
+        popup.style.left = "50%";
+        popup.style.transform = "translate(-50%, -50%)";
+        popup.style.backgroundColor = "#fff8dc";
+        popup.style.border = "3px solid #c97b5c";
+        popup.style.borderRadius = "30px";
+        popup.style.padding = "30px";
+        popup.style.width = "400px"
+        popup.style.boxShadow = "0 0 15px rgba(0,0,0,0.5)";
+        popup.style.zIndex = "1000";
+        popup.style.textAlign = "center";
+        popup.style.fontFamily = "Arial, sans-serif";
+
+        // content popup
+        popup.innerHTML = `
+        <h2 style="color:#c97b5c;">🎉 Gefeliciteerd!</h2>
+        <p>Je hebt ${milestone.toLocaleString()} cookies bereikt!</p>
+        <button id="closeMilestonePopup" style="
+            margin-top: 15px; 
+            padding: 8px 16px; 
+            background-color: #c97b5c; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer;">Sluit</button>
+    `;
+
+        document.body.appendChild(popup);
+
+        document.getElementById("closeMilestonePopup").addEventListener("click", () => {
+            popup.remove();
+        });
+
+        setTimeout(() => {
+            popup.remove();
+        }, 5000);
     }
+
 
 
 

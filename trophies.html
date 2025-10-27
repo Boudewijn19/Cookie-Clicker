@@ -18,67 +18,105 @@
 
 <!-- Titel -->
 <section class="text-center mt-10">
-    <h2 class="text-3xl font-bold text-gray-800">🏆 Trophies</h2>
-    <p class="text-gray-600 mt-2">Verdien trofeeën door cookies te bakken!</p>
+    <h2 class="text-3xl font-bold text-gray-800">🏆 Trofeeën</h2>
+    <p class="text-gray-600 mt-2">Speel de game en verdien je Trofeeën</p>
 </section>
 
 <!-- Trofeeën container -->
-<main class="max-w-4xl mx-auto mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+<main id="trophyContainer" class="max-w-4xl mx-auto mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
 
-    <!-- Trofee 1 -->
-    <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center hover:scale-105 transition">
-        <img src="Images/cookie_trophy.png" alt="Trophy 1" class="w-20 h-20 mb-4">
-        <h3 class="text-lg font-semibold">Fresh batch!</h3>
-        <p class="text-gray-600 text-sm mt-1 text-center">Je hebt je eerste 1.000 cookies gebakken 🍪</p>
-    </div>
-    <!-- Trofee 2 -->
-    <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center hover:scale-105 transition">
-        <img src="Images/silver_trophy.png" alt="Trophy 2" class="w-20 h-20 mb-4">
-        <h3 class="text-lg font-semibold">Myriade!</h3>
-        <p class="text-gray-600 text-sm mt-1 text-center">Je hebt 10.000 cookies gebakken!</p>
-    </div>
-    <!-- Trofee 3 -->
-    <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center hover:scale-105 transition">
-        <img src="Images/gold_cookie_trophy.png" alt="Trophy 3" class="w-20 h-20 mb-4">
-        <h3 class="text-lg font-semibold">Pro baker</h3>
-        <p class="text-gray-600 text-sm mt-1 text-center">Je hebt 100.000 cookies gebakken!</p>
-    </div>
-    <!-- Trofee 4 -->
-    <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center hover:scale-105 transition">
-        <img src="Images/trophy1.png" alt="Trophy 4" class="w-20 h-20 mb-4">
-        <h3 class="text-lg font-semibold">Grandma</h3>
-        <p class="text-gray-600 text-sm mt-1 text-center">Je hebt 10 grandma's gekocht</p>
-    </div>
-    <!-- Trofee 5 -->
-    <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center hover:scale-105 transition">
-        <img src="Images/trophy1.png" alt="Trophy 5" class="w-20 h-20 mb-4">
-        <h3 class="text-lg font-semibold">Bank</h3>
-        <p class="text-gray-600 text-sm mt-1 text-center">Je hebt een bank gekocht</p>
-    </div>
-    <!-- Trofee 6 -->
-    <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center hover:scale-105 transition">
-        <img src="Images/trophy1.png" alt="Trophy 6" class="w-20 h-20 mb-4">
-        <h3 class="text-lg font-semibold"></h3>
-        <p class="text-gray-600 text-sm mt-1 text-center"></p>
-    </div>
-    <!-- Trofee 7 -->
-    <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center hover:scale-105 transition">
-        <img src="Images/trophy1.png" alt="Trophy 7" class="w-20 h-20 mb-4">
-        <h3 class="text-lg font-semibold"></h3>
-        <p class="text-gray-600 text-sm mt-1 text-center"></p>
-    </div>
-    <!-- Trofee 8 -->
-    <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center hover:scale-105 transition">
-        <img src="Images/trophy1.png" alt="Trophy 8" class="w-20 h-20 mb-4">
-        <h3 class="text-lg font-semibold"></h3>
-        <p class="text-gray-600 text-sm mt-1 text-center"></p>
-    </div>    <!-- Trofee 9 -->
-    <div class="bg-white rounded-2xl shadow-md p-6 flex flex-col items-center hover:scale-105 transition">
-        <img src="Images/trophy1.png" alt="Trophy 9" class="w-20 h-20 mb-4">
-        <h3 class="text-lg font-semibold"></h3>
-        <p class="text-gray-600 text-sm mt-1 text-center"></p>
+    <!-- 1: 100 cookies -->
+    <div id="trophy-100" class="trophy bg-white hidden  rounded-2xl shadow-md p-6 flex flex-col items-center hover:scale-105 transition">
+        <img src="Images/coppertrophy.png" alt="Copper Cookie Trophy" class="w-20 h-20 mb-4">
+        <h3 class="text-lg font-semibold">Copper Cookie</h3>
+        <p class="text-gray-600 text-sm mt-1 text-center">Je hebt 100 cookies gebakken</p>
     </div>
 
+    <!-- 2: 1.000 cookies -->
+    <div id="trophy-1000" class="trophy bg-white hidden rounded-2xl shadow-md p-6 flex flex-col items-center hover:scale-105 transition">
+        <img src="Images/bronzetrophy.png" alt="Bronze Cookie Trophy" class="w-20 h-20 mb-4">
+        <h3 class="text-lg font-semibold">Bronze Baker</h3>
+        <p class="text-gray-600 text-sm mt-1 text-center">Je hebt 1.000 cookies gebakken</p>
+    </div>
+
+    <!-- 3: 10.000 cookies -->
+    <div id="trophy-10000" class="trophy bg-white hidden rounded-2xl shadow-md p-6 flex flex-col items-center hover:scale-105 transition">
+        <img src="Images/silver_trophy.png" alt="Silver Cookie Trophy" class="w-20 h-20 mb-4">
+        <h3 class="text-lg font-semibold">Silver Spoon</h3>
+        <p class="text-gray-600 text-sm mt-1 text-center">Je hebt 10.000 cookies gebakken</p>
+    </div>
+
+    <!-- 4: 50.000 cookies -->
+    <div id="trophy-50000" class="trophy bg-white hidden rounded-2xl shadow-md p-6 flex flex-col items-center hover:scale-105 transition">
+        <img src="Images/gold_cookie_trophy.png" alt="Gold Cookie Trophy" class="w-20 h-20 mb-4">
+        <h3 class="text-lg font-semibold">Golden Batch</h3>
+        <p class="text-gray-600 text-sm mt-1 text-center">Je hebt 50.000 cookies gebakken</p>
+    </div>
+
+    <!-- 5: 100.000 cookies -->
+    <div id="trophy-100000" class="trophy bg-white hidden rounded-2xl shadow-md p-6 flex flex-col items-center hover:scale-105 transition">
+        <img src="Images/irontrophy.png" alt="Iron Cookie Trophy" class="w-20 h-20 mb-4">
+        <h3 class="text-lg font-semibold">Iron Oven</h3>
+        <p class="text-gray-600 text-sm mt-1 text-center">Je hebt 100.000 cookies gebakken</p>
+    </div>
+
+    <!-- 6: 1.000.000 cookies -->
+    <div id="trophy-1000000" class="trophy bg-white hidden rounded-2xl shadow-md p-6 flex flex-col items-center hover:scale-105 transition">
+        <img src="Images/diamondtrophy.png" alt="Diamond Cookie Trophy" class="w-20 h-20 mb-4">
+        <h3 class="text-lg font-semibold">Diamond Dough</h3>
+        <p class="text-gray-600 text-sm mt-1 text-center">Je hebt 1.000.000 cookies gebakken</p>
+    </div>
+
+    <!-- 7: 10.000.000 cookies -->
+    <div id="trophy-10000000" class="trophy bg-white hidden rounded-2xl shadow-md p-6 flex flex-col items-center hover:scale-105 transition">
+        <img src="Images/crystaltrophy.png" alt="Crystal Cookie Trophy" class="w-20 h-20 mb-4">
+        <h3 class="text-lg font-semibold">Crystal Crunch</h3>
+        <p class="text-gray-600 text-sm mt-1 text-center">Je hebt 10.000.000 cookies gebakken</p>
+    </div>
+
+    <!-- 8: 100.000.000 cookies -->
+    <div id="trophy-100000000" class="trophy bg-white hidden rounded-2xl shadow-md p-6 flex flex-col items-center hover:scale-105 transition">
+        <img src="Images/rubycookie.png" alt="Ruby Cookie Trophy" class="w-20 h-20 mb-4">
+        <h3 class="text-lg font-semibold">Ruby Recipe</h3>
+        <p class="text-gray-600 text-sm mt-1 text-center">Je hebt 100.000.000 cookies gebakken</p>
+    </div>
+
+    <!-- 9: 1.000.000.000 cookies -->
+    <div id="trophy-1000000000" class="trophy bg-white hidden rounded-2xl shadow-md p-6 flex flex-col items-center hover:scale-105 transition">
+        <img src="Images/galaxycookie.png" alt="Galaxy Cookie Trophy" class="w-20 h-20 mb-4">
+        <h3 class="text-lg font-semibold">Galactic Baker</h3>
+        <p class="text-gray-600 text-sm mt-1 text-center">Je hebt 1.000.000.000 cookies gebakken</p>
+    </div>
+
+    <!-- 10: 10.000.000.000 cookies -->
+    <div id="trophy-10000000000" class="trophy bg-white hidden rounded-2xl shadow-md p-6 flex flex-col items-center hover:scale-105 transition">
+        <img src="Images/platinumcookie.png" alt="Platinum Cookie Trophy" class="w-20 h-20 mb-4">
+        <h3 class="text-lg font-semibold">Platinum Pastry</h3>
+        <p class="text-gray-600 text-sm mt-1 text-center">Je hebt 10.000.000.000 cookies gebakken</p>
+    </div>
+
+    <!-- 11: 100.000.000.000 cookies -->
+    <div id="trophy-100000000000" class="trophy bg-white hidden rounded-2xl shadow-md p-6 flex flex-col items-center hover:scale-105 transition">
+        <img src="Images/legendarycookie.png" alt="Legendary Cookie Trophy" class="w-20 h-20 mb-4">
+        <h3 class="text-lg font-semibold">Legendary Baker</h3>
+        <p class="text-gray-600 text-sm mt-1 text-center">Je hebt 100.000.000.000 cookies gebakken</p>
+    </div>
 </main>
 </body>
-</html>
+</html><script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Haal alle behaalde trophies op
+        const trophies = JSON.parse(localStorage.getItem("achievedTrophies")) || [];
+
+        // Loop door alle opgeslagen trophies
+        trophies.forEach(trophyKey => {
+            const trophyElement = document.getElementById(trophyKey);
+            if (trophyElement) {
+                // Verwijder 'hidden' zodat de trofee zichtbaar wordt
+                trophyElement.classList.remove("hidden");
+            }
+        });
+    });
+</script>
+
+
