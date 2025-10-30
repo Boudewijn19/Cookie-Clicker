@@ -353,3 +353,42 @@ body.dark-mode .settings-content {
     background: #1e1e1e;
     color: #eee;
 }
+
+#infoPanel p, #infoPanel ul, #infoPanel li {
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+#infoPanel ul {
+  list-style-type: disc;
+  margin-left: 20px;
+}
+
+#confirmBox .settings-content {
+  width: 350px; /* Iets breder voor betere layout */
+}
+
+#confirmBox button {
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+#noBtn {
+  background: #6c757d; /* Grijs voor annuleren */
+}
+
+#noBtn:hover {
+  background: #5a6268;
+  transform: translateY(-2px);
+}
+
+#yesBtn {
+  background: #dc3545; /* Rood voor resetten */
+}
+
+#yesBtn:hover {
+  background: #c82333;
+  transform: translateY(-2px);
+}
