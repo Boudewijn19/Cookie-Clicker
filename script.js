@@ -189,6 +189,173 @@ class Game {
         this.loadGame(); // Load saved game state
     }
 
+    // Save game state to localStorage
+    saveGame() {
+        const gameState = {
+            cookies: this.cookies,
+            cookiesPerClick: this.cookiesPerClick,
+            cps: this.cps,
+            reachedMilestones: Array.from(this.reachedMilestones),
+            clickCounter: this.clickCounter,
+            goldenActive: this.goldenActive,
+            // Save upgrade states
+            upgrades: {
+                cursor: {
+                    amount: this.cursorUpgrade.amount,
+                    price: this.cursorUpgrade.price
+                },
+                multiplier: {
+                    amount: this.multiplierUpgrade.amount,
+                    price: this.multiplierUpgrade.price
+                },
+                superClick: {
+                    amount: this.superKlickUpgrade.amount,
+                    price: this.superKlickUpgrade.price
+                },
+                goldenClick: {
+                    amount: this.goldenKlickUpgrade.amount,
+                    price: this.goldenKlickUpgrade.price
+                },
+                grandma: {
+                    amount: this.grandmaUpgrade.amount,
+                    price: this.grandmaUpgrade.price
+                },
+                farm: {
+                    amount: this.farmUpgrade.amount,
+                    price: this.farmUpgrade.price
+                },
+                factory: {
+                    amount: this.factoryUpgrade.amount,
+                    price: this.factoryUpgrade.price
+                },
+                mine: {
+                    amount: this.mineUpgrade.amount,
+                    price: this.mineUpgrade.price
+                },
+                bank: {
+                    amount: this.bankUpgrade.amount,
+                    price: this.bankUpgrade.price
+                },
+                temple: {
+                    amount: this.templeUpgrade.amount,
+                    price: this.templeUpgrade.price
+                },
+                wizardTower: {
+                    amount: this.wizardTowerUpgrade.amount,
+                    price: this.wizardTowerUpgrade.price
+                }
+            }
+        };
+
+        localStorage.setItem('cookieClickerSave', JSON.stringify(gameState));
+    }
+
+    // Load game state from localStorage
+    loadGame() {
+        const savedGame = localStorage.getItem('cookieClickerSave');
+        if (savedGame) {
+            try {
+                const gameState = JSON.parse(savedGame);
+
+                this.cookies = gameState.cookies || 0;
+                this.cookiesPerClick = gameState.cookiesPerClick || 1;
+                this.cps = gameState.cps || 0;
+                this.reachedMilestones = new Set(gameState.reachedMilestones || []);
+                this.clickCounter = gameState.clickCounter || 0;
+                this.goldenActive = gameState.goldenActive || false;
+
+                // Load upgrade states
+                if (gameState.upgrades) {
+                    if (gameState.upgrades.cursor) {
+                        this.cursorUpgrade.amount = gameState.upgrades.cursor.amount || 0;
+                        this.cursorUpgrade.price = gameState.upgrades.cursor.price || 10;
+                    }
+                    if (gameState.upgrades.multiplier) {
+                        this.multiplierUpgrade.amount = gameState.upgrades.multiplier.amount || 0;
+                        this.multiplierUpgrade.price = gameState.upgrades.multiplier.price || 50;
+                    }
+                    if (gameState.upgrades.superClick) {
+                        this.superKlickUpgrade.amount = gameState.upgrades.superClick.amount || 0;
+                        this.superKlickUpgrade.price = gameState.upgrades.superClick.price || 20;
+                    }
+                    if (gameState.upgrades.goldenClick) {
+                        this.goldenKlickUpgrade.amount = gameState.upgrades.goldenClick.amount || 0;
+                        this.goldenKlickUpgrade.price = gameState.upgrades.goldenClick.price || 30;
+                    }
+                    if (gameState.upgrades.grandma) {
+                        this.grandmaUpgrade.amount = gameState.upgrades.grandma.amount || 0;
+                        this.grandmaUpgrade.price = gameState.upgrades.grandma.price || 100;
+                    }
+                    if (gameState.upgrades.farm) {
+                        this.farmUpgrade.amount = gameState.upgrades.farm.amount || 0;
+                        this.farmUpgrade.price = gameState.upgrades.farm.price || 500;
+                    }
+                    if (gameState.upgrades.factory) {
+                        this.factoryUpgrade.amount = gameState.upgrades.factory.amount || 0;
+                        this.factoryUpgrade.price = gameState.upgrades.factory.price || 3000;
+                    }
+                    if (gameState.upgrades.mine) {
+                        this.mineUpgrade.amount = gameState.upgrades.mine.amount || 0;
+                        this.mineUpgrade.price = gameState.upgrades.mine.price || 10000;
+                    }
+                    if (gameState.upgrades.bank) {
+                        this.bankUpgrade.amount = gameState.upgrades.bank.amount || 0;
+                        this.bankUpgrade.price = gameState.upgrades.bank.price || 50000;
+                    }
+                    if (gameState.upgrades.temple) {
+                        this.templeUpgrade.amount = gameState.upgrades.temple.amount || 0;
+                        this.templeUpgrade.price = gameState.upgrades.temple.price || 200000;
+                    }
+                    if (gameState.upgrades.wizardTower) {
+                        this.wizardTowerUpgrade.amount = gameState.upgrades.wizardTower.amount || 0;
+                        this.wizardTowerUpgrade.price = gameState.upgrades.wizardTower.price || 1000000;
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading saved game:', error);
+            }
+        }
+    } 
+    updateStats() {
+        document.getElementById("statCookies").textContent = Math.floor(this.cookies);
+        document.getElementById("statCps").textContent = this.cps;
+        document.getElementById("statCursors").textContent = this.cursorUpgrade.amount;
+        document.getElementById("statGrandmas").textContent = this.grandmaUpgrade.amount;
+        document.getElementById("statFarm").textContent = this.farmUpgrade.amount;
+        document.getElementById("statFactory").textContent = this.factoryUpgrade.amount;
+        document.getElementById("statMine").textContent = this.mineUpgrade.amount;
+        document.getElementById("statBank").textContent = this.bankUpgrade.amount;
+        document.getElementById("statTemple").textContent = this.templeUpgrade.amount;
+        document.getElementById("statWizard").textContent = this.wizardTowerUpgrade.amount;
+    }
+
+    clickCookie() {
+        this.previousCookies = this.cookies;
+
+        this.clickCounter++;
+        let addedCookies = this.cookiesPerClick;
+
+        if (this.goldenActive && this.clickCounter % 50 === 0) {
+            addedCookies += 500;
+        }
+
+        this.cookies += addedCookies;
+        this.updateUI();
+         // Save progress after earning cookies
+        this.saveGame();
+
+        // Milestone checks
+        for (const milestone of this.milestones) {
+            if (
+                this.previousCookies < milestone &&
+                this.cookies >= milestone &&
+                !this.reachedMilestones.has(milestone)
+            ) {
+                this.reachedMilestones.add(milestone);
+                this.showMilestonePopup(milestone);
+            }
+        }
+    }
     showMilestonePopup(milestone) {
         const existingPopup = document.getElementById("milestonePopup");
         if (existingPopup) existingPopup.remove();
@@ -425,7 +592,6 @@ class Game {
         setTimeout(() => {
             this.cookiesPerClick /= multiplier;
             this.updateUI();
-            this.saveGame();
         }, 10000); // 10 seconds
     }
 
@@ -433,7 +599,7 @@ class Game {
     activateGoldenKlick() {
         this.goldenActive = true;
         this.updateUI();
-        this.saveGame();
+        this.saveGame(); 
         setTimeout(() => {
             this.goldenActive = false;
             this.updateUI();
@@ -655,4 +821,3 @@ const Info = {
 Info.init();
 Settings.init();
 Stats.init();
-
