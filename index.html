@@ -21,6 +21,7 @@
         <h2>Cookies: <span id="score">0</span></h2>
         <p>Per seconde: <span id="cps">0</span></p>
         <img id="cookie" src="Images/finger-food-game-peanut-butter-cookie-recipe-cookies-and-crackers-removebg-preview.png" alt="cookie">
+        <button id="changeCookieBtn">change Cookie</button>
 
         <!-- Building Visuals Container -->
         <div class="building-visuals" id="buildingVisuals"></div>
@@ -194,3 +195,23 @@
 <script src="script.js"></script>
 </body>
 </html>
+<script>
+    const cookieImg = document.getElementById("cookie");
+    const changeBtn = document.getElementById("changeCookieBtn");
+
+    let isOriginal = true; // houdt bij welke cookie wordt getoond
+
+    changeBtn.addEventListener("click", () => {
+        if (isOriginal) {
+            cookieImg.src = "Images/cookie2.png"; // nieuwe afbeelding
+        } else {
+            cookieImg.src = "Images/finger-food-game-peanut-butter-cookie-recipe-cookies-and-crackers-removebg-preview.png"; // originele afbeelding
+        }
+
+        // kleine visuele animatie
+        cookieImg.classList.add("toggle");
+        setTimeout(() => cookieImg.classList.remove("toggle"), 200);
+
+        isOriginal = !isOriginal; // wissel de status
+    });
+</script>

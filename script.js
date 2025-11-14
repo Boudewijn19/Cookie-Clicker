@@ -69,7 +69,7 @@ class Upgrade {
     }
 }
 
-// Game Class 
+// Game Class
 class Game {
     constructor() {
         this.cookies = 0;
@@ -78,7 +78,7 @@ class Game {
         this.previousCookies = 0;
 
         // Milestones system
-        this.milestones = [1,100, 1000, 10000, 50000, 100000, 1000000, 10000000, 100000000, 1000000000, 10000000000, 100000000000];
+        this.milestones = [1, 100, 1000, 10000, 50000, 100000, 1000000, 10000000, 100000000, 1000000000, 10000000000, 100000000000];
         this.reachedMilestones = new Set();
 
         // Extra counters
@@ -189,7 +189,6 @@ class Game {
 
         this.loadGame(); // Load saved game state - EENKEER aanroepen
     }
-
     // Save game state to localStorage
     saveGame() {
         const gameState = {
@@ -402,6 +401,10 @@ class Game {
 
         this.cookies += addedCookies;
         this.updateUI();
+
+      //effect showClickEffect
+        this.showClickEffect(addedCookies);
+
         // Save progress after earning cookies
         this.saveGame();
 
@@ -416,6 +419,30 @@ class Game {
                 this.showMilestonePopup(milestone);
             }
         }
+    }
+    showClickEffect(cookiesEarned) {
+        const effect = document.createElement('div');
+        effect.className = 'click-effect';
+        effect.textContent = `+${cookiesEarned}`;
+
+        // Get cookie position
+        const cookieRect = this.cookie.getBoundingClientRect();
+
+        // Random position around the cookie
+        const randomX = Math.random() * 100 - 50; // -50 to +50 pixels
+        const randomY = Math.random() * 80 - 40;  // -40 to +40 pixels
+
+        effect.style.left = `${cookieRect.left + cookieRect.width / 2 + randomX}px`;
+        effect.style.top = `${cookieRect.top + cookieRect.height / 2 + randomY}px`;
+
+        document.body.appendChild(effect);
+
+        // Remove element after animation
+        setTimeout(() => {
+            if (effect.parentNode) {
+                effect.remove();
+            }
+        }, 1000);
     }
 
     showMilestonePopup(milestone) {
@@ -706,7 +733,6 @@ const Info = {
         });
     }
 };
-
 Info.init();
 Settings.init();
 Stats.init();

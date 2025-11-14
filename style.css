@@ -392,3 +392,49 @@ body.dark-mode .settings-content {
   background: #c82333;
   transform: translateY(-2px);
 }
+
+/* Click effect styles */
+.click-effect {
+    position: fixed;
+    color: #ff6b35;
+    font-size: 24px;
+    font-weight: bold;
+    pointer-events: none;
+    z-index: 1000;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    font-family: 'Arial', sans-serif;
+    animation: floatUp 1s ease-out forwards;
+    user-select: none;
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: translateY(-30px) scale(1.2);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-60px) scale(0.8);
+    }
+}
+#changeCookieBtn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #c97b5c;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+#changeCookieBtn:hover {
+    background-color: #b0634f;
+    transform: scale(1.05);
+}
