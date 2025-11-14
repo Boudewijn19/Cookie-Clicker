@@ -85,6 +85,9 @@ class Game {
         this.clickCounter = 0;
         this.goldenActive = false;
 
+        this.goldenCookie = null;
+        this.startGoldenCookieScheduler();
+
         // DOM elements
         this.scoreDisplay = document.getElementById("score");
         this.cpsDisplay = document.getElementById("cps");
@@ -188,6 +191,137 @@ class Game {
         }, 1000);
 
         this.loadGame(); // Load saved game state - EENKEER aanroepen
+    }
+
+    // ★★★ GOLDEN COOKIE METHODS ★★★
+    startGoldenCookieScheduler() {
+        // Spawn een golden cookie elke 60 seconden
+        setInterval(() => {
+            this.spawnGoldenCookie();
+        }, 60000); // 60 seconden
+    }
+
+    spawnGoldenCookie() {
+        // Verwijder vorige golden cookie als die er nog is
+        if (this.goldenCookie) {
+            this.removeGoldenCookie();
+        }
+
+        console.log("🌟 Golden Cookie spawned!");
+
+        // Create golden cookie element
+        this.goldenCookie = document.createElement('div');
+        this.goldenCookie.className = 'golden-cookie';
+        this.goldenCookie.innerHTML = '🌟';
+
+        // Random positie op het scherm
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 100);
+
+        this.goldenCookie.style.cssText = `
+            position: fixed;
+            left: ${x}px;
+            top: ${y}px;
+            font-size: 40px;
+            cursor: pointer;
+            z-index: 1001;
+            animation: float 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px gold);
+        `;
+
+        // Click event voor golden cookie
+        this.goldenCookie.addEventListener('click', () => {
+            this.collectGoldenCookie();
+        });
+
+        document.body.appendChild(this.goldenCookie);
+
+        // Verwijder golden cookie na 10 seconden als niet geklikt
+        setTimeout(() => {
+            if (this.goldenCookie && this.goldenCookie.parentNode) {
+                this.removeGoldenCookie();
+                this.showEventNotification("🌟 Golden Cookie gemist!");
+            }
+        }, 10000); // 10 seconden
+    }
+
+    collectGoldenCookie() {
+        if (!this.goldenCookie) return;
+
+        console.log("🌟 Golden Cookie collected!");
+
+        // Geef 50000 cookies
+        this.cookies += 50000;
+        this.updateUI();
+
+        // Toon speciale effect
+        this.showGoldenCookieEffect();
+
+        // Toon notificatie
+        this.showEventNotification("🎉 +50,000 cookies van Golden Cookie!");
+
+        // Verwijder golden cookie
+        this.removeGoldenCookie();
+
+        // Save game
+        this.saveGame();
+    }
+
+    removeGoldenCookie() {
+        if (this.goldenCookie && this.goldenCookie.parentNode) {
+            this.goldenCookie.remove();
+            this.goldenCookie = null;
+        }
+    }
+
+    showGoldenCookieEffect() {
+        const effect = document.createElement('div');
+        effect.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 60px;
+            color: gold;
+            z-index: 1002;
+            animation: goldenEffect 2s ease-out forwards;
+            pointer-events: none;
+        `;
+        effect.textContent = '🎉 +50.000!';
+
+        document.body.appendChild(effect);
+
+        setTimeout(() => {
+            effect.remove();
+        }, 2000);
+    }
+
+    showEventNotification(message) {
+        const notification = document.createElement('div');
+        notification.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 215, 0, 0.95);
+            color: black;
+            padding: 20px 30px;
+            border-radius: 15px;
+            z-index: 1002;
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            border: 3px solid gold;
+        `;
+        notification.textContent = message;
+
+        document.body.appendChild(notification);
+
+        // Verwijder na 3 seconden
+        setTimeout(() => {
+            notification.remove();
+        }, 3000);
     }
     // Save game state to localStorage
     saveGame() {
